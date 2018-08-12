@@ -30,26 +30,23 @@
 */
 
 //Code Here
-class Employee{
-  constructor(first_name, last_name, email, age){
-      this.first_name = first_name;
-      this.last_name = last_name;
-      this.email = email;
-      this.age = age;
-      
-
+class Employee {
+  constructor(first_name, last_name, email, age) {
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.email = email;
+    this.age = age;
   }
-  makeWidget(){
-    return this.first_name + ' ' + this.last_name + ' Widget';
+  makeWidget() {
+    return this.first_name + " " + this.last_name + " Widget";
   }
 }
-var user01 = new Employee('Daniel', 'Hagos','hagos@gmail.com',26);
-var user02 = new Employee('Danie', 'Hagos','sea@gmail.com',27);
-var user03 = new Employee('Dani', 'Hagos','segos@gmail.com',24);
-var user04 = new Employee('Dan', 'Hagos','gos@gmail.com',28);
+var user01 = new Employee("Daniel", "Hagos", "hagos@gmail.com", 26);
+var user02 = new Employee("Danie", "Hagos", "sea@gmail.com", 27);
+var user03 = new Employee("Dani", "Hagos", "segos@gmail.com", 24);
+var user04 = new Employee("Dan", "Hagos", "gos@gmail.com", 28);
 
 console.log(user01);
-
 
 // ////////// PROBLEM 2 //////////
 
@@ -70,24 +67,21 @@ console.log(user01);
 // //Code Here
 class Manager {
   constructor(first_name, last_name, email, age) {
-    this.first_name=first_name
-    this.last_name=last_name
-    this.email=email
-    this.age=age
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.email = email;
+    this.age = age;
     this.reports = [];
-    
   }
   hire(employee) {
-   this.reports.push(employee);
+    this.reports.push(employee);
   }
   fire(index) {
-  this.reports.splice(index,1)
-
+    this.reports.splice(index, 1);
   }
 }
-let Dan = new Manager("Dan", "hag", "gmail.com", 27)
-console.log(Dan)
-
+let Dan = new Manager("Dan", "hag", "gmail.com", 27);
+console.log(Dan);
 
 // ////////// PROBLEM 3 //////////
 
@@ -112,28 +106,34 @@ console.log(Dan)
 // */
 
 // //Code Here
-class ProgressiveManager {
-  constructor(first_name, last_name, email, age) {
-    this.first_name=first_name
-    this.last_name=last_name
-    this.email=email
-    this.age=age
-    this.title="Not a manager"
-    this.bonus=0
+class ProgressiveManager extends Manager {
+  constructor(first_name, last_name, email, age, title, bonus) {
+    super(first_name, last_name, email, age);
     this.reports = [];
-    
+    this.title = "Not a manager";
+    this.bonus = 0;
   }
   hire(employee) {
-   this.reports.push(employee);
+    this.reports.push(employee);
+    if (this.reports.length >= 101) {
+      return (this.title = "Bestest Manager");
+    } else if (this.reports.length >= 51) {
+      return (this.title = "Manager Plus");
+    } else if (this.reports.length >= 11) {
+      return (this.title = "Manager");
+    } else if (this.reports.length >= 4) {
+      return (this.title = "Mostly Manager");
+    } else if (this.reports.length >= 1) {
+      return (this.title = "Barely Manager");
+    } else {
+      return this.title;
+    }
   }
   fire(index) {
-  this.reports.splice(index,1)
-
+    this.reports.splice(index, 1);
+    this.bonus = this.bonus + 100;
   }
 }
-let Dan = new Manager("Dan", "hag", "gmail.com", 27)
-console.log(Dan)
-
 
 // ////////// PROBLEM 4 - Black Diamond //////////
 
@@ -159,25 +159,23 @@ console.log(Dan)
 // */
 
 // //Code Here
-class Machine{
-constructor(){
-  this.widgets_made_count=0;
-  this.wear_and_tear_count=0;
-  this.needs_reboot=false;
-}
-makeWidgets(num){
-  this.widgets_made_count+=num;
-  this.wear_and_tear_count+=(num/50);
-
-}
-fixMachine(){
-this.needs_reboot=true;
-}
-reboot(){
-  return()=>{
-this.wear_and_tear_count-=10;
-this.needs_reboot=false;
+class Machine {
+  constructor() {
+    this.widgets_made_count = 0;
+    this.wear_and_tear_count = 0;
+    this.needs_reboot = false;
+  }
+  makeWidgets(num) {
+    this.widgets_made_count += num;
+    this.wear_and_tear_count += num / 50;
+  }
+  fixMachine() {
+    this.needs_reboot = true;
+  }
+  reboot() {
+    return () => {
+      this.wear_and_tear_count -= 10;
+      this.needs_reboot = false;
+    };
   }
 }
-}
-
